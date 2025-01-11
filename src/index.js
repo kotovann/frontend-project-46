@@ -12,8 +12,8 @@ const genDiff = (filePath1, filePath2) => {
 
   const fileType = path.extname(filePath1).slice(1);
 
-  let file1ParsedData ;
-  let file2ParsedData ;
+  let file1ParsedData = '';
+  let file2ParsedData = '';
 
   if (fileType === 'json') {
     file1ParsedData = jsonParse(File1Data);
