@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import { expect, test } from '@jest/globals';
 import { fileURLToPath } from 'url';
@@ -13,14 +14,7 @@ const jsonFilepath2 = getFixturePath('file2.json');
 const yamlFilepath1 = getFixturePath('file1.yaml');
 const yamlFilepath2 = getFixturePath('file2.yaml');
 
-const result = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`;
+const result = fs.readFileSync(getFixturePath('result.txt'), 'utf-8');
 
 test('gendiff json', () => {
   expect(genDiff(jsonFilepath1, jsonFilepath2)).toBe(result);
