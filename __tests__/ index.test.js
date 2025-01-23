@@ -33,3 +33,13 @@ test('gendiff json plain', () => {
 test('gendiff yaml plain', () => {
   expect(genDiff(yamlFilepath1, yamlFilepath2, 'plain')).toBe(resultPlain);
 });
+
+const resultJson = fs.readFileSync(getFixturePath('resultJson.json'), 'utf-8');
+
+test('gendiff json jsonFormat', () => {
+  expect(genDiff(jsonFilepath1, jsonFilepath2, 'json')).toBe(resultJson);
+});
+
+test('gendiff yaml jsonFormat', () => {
+  expect(genDiff(yamlFilepath1, yamlFilepath2, 'json')).toBe(resultJson);
+});
