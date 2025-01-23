@@ -2,9 +2,9 @@ import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import { jsonParse, yamlParse } from './parsers.js';
-import stylish from './stylish.js';
+import pickFormat from './formatters/index.js';
 
-const genDiff = (filePath1, filePath2, format = 'stylish') => {
+const genDiff = (filePath1, filePath2, formatName = 'stylish') => {
   const absolutePath1 = path.resolve(process.cwd(), filePath1);
   const absolutePath2 = path.resolve(process.cwd(), filePath2);
 
@@ -55,10 +55,7 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
     return result;
   };
   const differences = findDifferences(file1ParsedData, file2ParsedData);
-  if (format === 'stylish') {
-    return `{\n${stylish(differences)}\n}`;
-  }
-  return null;
+  return pickFormat(differences, formatName);
 };
 
 export default genDiff;
