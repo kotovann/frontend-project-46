@@ -12,8 +12,8 @@ const renderValue = (value, depthCount, spacesCount) => {
   return value;
 };
 
-const stylish = (diff) => {
-  const iter = (depthCount = 1, spacesCount = 4) => {
+const stylish = (differences) => {
+  const iter = (diff, depthCount = 1, spacesCount = 4) => {
     const result = diff.map((item) => {
       const {
         key, state, children, value, oldValue, newValue,
@@ -39,7 +39,7 @@ const stylish = (diff) => {
     return result.join('\n');
   };
 
-  const result = iter(diff);
+  const result = iter(differences);
   return `{\n${result}\n}`;
 };
 
